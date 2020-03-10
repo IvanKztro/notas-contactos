@@ -1,0 +1,84 @@
+.body{
+  margin: 0;
+  padding: 0;
+  background: url('../img/fondo.png') no-repeat center top;
+  background-size: cover;
+  height: 100vh;
+  
+}
+
+.nota:hover {
+    background-color:#A9BCF5;
+    
+    color: white!important;
+    
+    
+  }
+  .nota > a{
+    text-decoration: none;
+    color: black;
+  }
+  .login-box{
+    margin-top: 10%;
+    border: 2px solid #02AC66;
+    background-color: black;
+    height: 60%;
+    opacity: 0.8;
+    border-radius: 12px;
+  }
+  
+ 
+  .img-logo{
+    border-radius: 10%;
+    height: 32%;
+    width: 32%;
+    position: absolute;
+    top: -50px;
+    left:  calc(47% - 50px);
+  }
+
+
+  .register-box{
+    margin-top: 10%;
+    border: 2px solid #02AC66;
+    background-color: black;
+    height: 60%;
+    opacity: 0.8;
+    border-radius: 12px;
+  }
+  .img-logo-register{
+    border-radius: 10%;
+    height: 25%;
+    width: 25%;
+    position: absolute;
+    top: 10px;
+    left:  calc(47% - 50px);
+  }
+  .formLogin input {
+    margin-top: 5px;
+  }
+  .formLogin input[type="text"],
+  .formLogin input[type="password"]
+  {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+    height: 30px;
+    color: #fff;
+    margin-bottom:20px;
+    box-shadow: inset 0 -1px ;
+  }
+  .formLogin label{
+    color: white;
+  }
+  .formLogin .a-login{
+    text-decoration: none;
+    color: darkgrey;
+  }
+  .formLogin .a-login:hover{
+   
+    color: #02AC66;
+    outline: blanchedalmond;
+  }
+
+ 
