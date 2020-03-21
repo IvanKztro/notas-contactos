@@ -9,15 +9,18 @@
 
 .nota:hover {
     background-color:#A9BCF5;
-    
-    color: white!important;
-    
-    
+    color: white!important;  
   }
+
   .nota > a{
     text-decoration: none;
     color: black;
   }
+  .contacto > a{
+    text-decoration: none;
+    color: black;
+  }
+
   .login-box{
     margin-top: 10%;
     border: 2px solid #02AC66;

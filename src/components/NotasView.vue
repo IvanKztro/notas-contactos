@@ -1,6 +1,6 @@
 <template>
-    <div class="pt-2">
-        <div class=" container col-lg-12 col-12  pr-1 bg.danger"  v-for="(nota, index) in filterNotas" :key="index"  >
+    <div class="" style="margin-top: 1%; margin-bottom: 4%">
+        <div class=" container col-lg-12 col-12  pr-1 bg.danger "  v-for="(nota, index) in filterNotas" :key="index"  >
             <div class="d-flex justify-content-between  nota"  >
                 <router-link class="col-lg-6 col-6 bg" :to="{name: 'EditNota', params:{_id: nota._id} }">
                     {{nota.titulo}}

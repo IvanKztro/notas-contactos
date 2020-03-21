@@ -15,7 +15,10 @@ export default new Vuex.Store({
       password: '12345'
     },
     search: '',
+    searchC: '',
     notas:[],
+    contactos: [],
+    searchContactos: [],
     msj: {color: 'success', text: ''},
     dismissSecs: 5,
     dismissCountDown: 0,
@@ -23,36 +26,43 @@ export default new Vuex.Store({
   },
   mutations: {
     filterNotas(state){
-      console.log("dsdsdsdsd")
+      //console.log("dsdsdsdsd")
       const filtro = state.notas.filter(nota => {
         return nota.titulo.toLowerCase().includes(state.search.toLowerCase())
       })
-      console.log(filtro)
+      //console.log(filtro)
       return filtro;
     },
-    filterNotas2(state){
-      
-      return state.notas.filter(nota => {
-          
-          return nota.titulo.toLowerCase().includes(state.search.toLowerCase())
-      })
-      //console.log(filtro);
-      
-          
-      
-  },
     updateSearch (state, text) {
       state.search = text
+    },
+    updateSearchC (state, text) {
+      state.searchC = text
     }
     
   },
   actions: {
     listarNotas: async(context) => {
-      const data = await axios.get('/notas');
+                                                 //{tk: localStorage.getItem('tk')}
+      const us = localStorage.getItem('userID');
+     // console.log(us)
+      const data = await axios.post('/notas', {userID: us });
       //console.log(data)
       context.state.notas = data.data;
      // console.log(context.state.notas)
     },
+     listarContactos: async (context) => {
+      
+      const byUser = localStorage.getItem('userID');
+      try {
+          const contactos = await axios.post('/contactos', {byUser_contacto: byUser});
+          context.state.contactos = contactos.data;
+      } catch (error) {
+          console.log(error.response)
+      }
+      
+
+  },
     countDownChanged(context, dismissCountDown) {
       context.state.dismissCountDown = dismissCountDown
     },

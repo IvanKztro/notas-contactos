@@ -12,7 +12,9 @@ import '../public/css/style.css'
 Vue.use(BootstrapVue)
 Vue.use(VueAxios, axios)
 // Agregamos la URL base de nuestra API
-axios.defaults.baseURL = 'http://localhost:4000/api';
+//axios.defaults.baseURL = 'http://localhost:4000/api';
+axios.defaults.baseURL = 'https://appmevna.herokuapp.com/api';
+
 
 Vue.config.productionTip = false
 

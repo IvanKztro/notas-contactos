@@ -6,6 +6,10 @@ import EditNota from '../views/EditNota.vue'
 import NewNota from '../views/NewNota.vue'
 import Login from '../views/Login.vue'
 import Registrar from '../views/Registrar.vue'
+import Contactos from '../views/Contactos.vue'
+import NewContacto from '../views/NewContacto.vue'
+import EditContacto from '../views/EditContacto.vue'
+
 import store from '../store/index.js'
 
 Vue.use(VueRouter)
@@ -18,7 +22,8 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {requiresAuth: true}
   },
   {
     path:'/registrar',
@@ -28,9 +33,6 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
@@ -50,6 +52,25 @@ const routes = [
     name: "NewNota",
     component: NewNota,
     meta: {requiresAuth: true}
+  },
+  {
+    path: '/contactos',
+    name: 'Contactos',
+    component: Contactos,
+    meta:{requiresAuth: true}
+  },
+  {
+    path: '/newContacto',
+    name: 'NewContacto',
+    component: NewContacto,
+    meta:{requiresAuth: true}
+  },
+  {
+    //path: '/EditNota/:_id?',
+    path: '/EditContacto/:_id?',
+    name: 'EditContacto',
+    component: EditContacto,
+    meta: {requiresAuth: true}
   }
 ]
 
@@ -66,9 +87,14 @@ router.beforeResolve( async(to, from, next) => {
      const email = store.state.form.email
      //console.log(email)
      const response =  await store.dispatch("auth")
-     //console.log(response)
+     //console.log("response: ",response)
+    //  if(to.fullPath == '/login'){
+    //     next({name: 'Notas'})
+    //  }
+      
      //debugger
-    if(!response) next({name:'Login'})
+    if(!response && to.fullPath != '/login') next({name:'Login'})
+    else if(response && to.fullPath == '/login') next({name:'Notas'})
     else next()
     
     

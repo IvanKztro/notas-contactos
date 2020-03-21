@@ -32,7 +32,7 @@ export default {
             msj: {color: 'success', text: ''},
             dismissSecs: 5,
             dismissCountDown: 0,
-            item: {titulo: '', description: ''}
+            item: {titulo: '', description: '', byUser_Nota: localStorage.getItem('userID')}
         }
     },
     computed:{
@@ -52,9 +52,8 @@ export default {
         try {
             //console.log(this.item);}
             //headers: {'X-Custom-Header': 'foobar'}
-            
             const nuevaNota = await this.axios.post('/newNota',this.item)
-            //console.log(nuevaNota);
+            
             this.notas.push(nuevaNota.data);
             this.item.titulo = '';
             this.item.description = '';
@@ -62,7 +61,7 @@ export default {
             this.msj.text = "Nota agregada"
             this.showAlert();
         } catch (error) {
-            //console.log(error.response)
+            console.log(error.response)
             this.msj.color = "danger"
             //if(error.response.data.error.errors.name.message)
             this.msj.text = error.response.data.error.errors.name.message ? 'Titulo Obligatorio': ''

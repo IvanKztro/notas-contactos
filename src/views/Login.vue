@@ -1,6 +1,12 @@
 <template>
-  <div class="d-flex justify-content-center bg-success body ">
-
+<div class="body">
+    <div class="py-3 bg-danger" style="opacity: 0.8; border-radius: 12px;" v-if="errorL">
+        <div>
+            <h5 class="text-center" style="color: white">Correo o contraseña incorrecta</h5>
+        </div>
+    </div>
+  <div class="d-flex justify-content-center">
+        
         <div class="col-lg-4 login-box">
             <img src="@/assets/logo.png" class="img-logo" alt="">
             <form @submit.prevent="login()">
@@ -19,37 +25,49 @@
             </form>
         </div>
   </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 
 export default {
     name: 'Login',
     data(){
         return{
-            title: "Login"
+            title: "Login",
+            errorL: false
         }
     },
     computed: {
         ...mapState(['form'])
     },
     methods:{
-          async login(){
+        ...mapActions(['auth']),
+            async login (){
               try {
                 const response = await axios.post('/login',this.form);
                 if(response.data.ok){
+                    //const storage =  await JSON.stringify(response.data)
                     localStorage.setItem('tk',response.data.tk);
+                    localStorage.setItem('userID',response.data.userID);
                     this.$router.push('/notas')
                 }
                 
               } catch (error) {
                 console.log(error.response);
+                this.errorL = true
               }
                 
         },
        
+    },
+    async beforeMount(){
+        // const validate = await this.auth();
+        // if(validate)
+        // this.$router.push("/notas")
+        // console.log(validate);
     }
    /* methods:{
         async registrar(){

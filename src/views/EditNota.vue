@@ -25,6 +25,7 @@ export default {
             const response = await this.axios.put(`/modifyNota/${this._id}`,this.nota)
             //console.log(response)
             this.nota.date = await new Date().toLocaleString();
+            this.$router.push("/notas");
         }
     },
    async mounted() {
@@ -35,16 +36,9 @@ export default {
         this.nota.titulo = response.data.titulo;
         this.nota.description = response.data.description;
         const fecha = new Date(response.data.date);
-        this.nota.date = fecha.toLocaleString()
-        //this.nota.date = new Date(response.data.date).getMonth;
-         //this.fecha = response.data.date.
-         //const fecha3 = response.data.date
-         //const fecha3 = new Date(response.data.date).toString();
-
-        //this.nota.date =  Date.now
-        //console.log(this.nota.date);
+        this.nota.date = fecha.toLocaleString();
         
-        //"2020-03-02T03:48:28.337Z"
+        
     },
 }
 </script>
