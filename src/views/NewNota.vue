@@ -53,13 +53,13 @@ export default {
             //console.log(this.item);}
             //headers: {'X-Custom-Header': 'foobar'}
             const nuevaNota = await this.axios.post('/newNota',this.item)
-            
-            this.notas.push(nuevaNota.data);
-            this.item.titulo = '';
-            this.item.description = '';
-            this.msj.color = "success"
-            this.msj.text = "Nota agregada"
-            this.showAlert();
+            this.$router.push("/notas")
+            // this.notas.push(nuevaNota.data);
+            // this.item.titulo = '';
+            // this.item.description = '';
+            // this.msj.color = "success"
+            // this.msj.text = "Nota agregada"
+            // this.showAlert();
         } catch (error) {
             console.log(error.response)
             this.msj.color = "danger"

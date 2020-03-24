@@ -66,18 +66,18 @@ export default {
             //console.log(this.item);}
             //headers: {'X-Custom-Header': 'foobar'}
             const nuevaNota = await this.axios.post('/newContacto',this.contacto)
-            
+            this.$router.push("/contactos")
             //this.notas.push(nuevaNota.data);
             // this.item.titulo = '';
             // this.item.description = '';
             //contacto: {name: '', lastName: '', number: '', email: ''},
-            this.contacto.name = "";
-            this.contacto.lastName = "";
-            this.contacto.number = "";
-            this.contacto.email = "";
-            this.msj.color = "success"
-            this.msj.text = "Contacto agregado"
-            this.showAlert();
+            // this.contacto.name = "";
+            // this.contacto.lastName = "";
+            // this.contacto.number = "";
+            // this.contacto.email = "";
+            // this.msj.color = "success"
+            // this.msj.text = "Contacto agregado"
+            // this.showAlert();
         } catch (error) {
             console.log(error.response)
             this.msj.color = "danger"

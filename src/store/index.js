@@ -11,8 +11,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     form: { 
-      email: 'jojoser', 
-      password: '12345'
+      email: 'prueba@gmail.com', 
+      password: '1234567'
     },
     search: '',
     searchC: '',
@@ -114,7 +114,7 @@ export default new Vuex.Store({
         }
         //localStorage.setItem('tk',response.data.tk);
       } catch (error) {
-        //console.log(error.response.data.ok);
+        console.log(error.response);
         return error.response.data.ok
       }
         
