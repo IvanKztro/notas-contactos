@@ -1,5 +1,5 @@
 <template>
-    <div class="content-aling-center px-3">
+    <div class="container col-lg-6 content-aling-center px-3">
         <!-- <h4 class="text-center">{{fecha}}</h4> -->
         <h4 class="text-center">{{nota.date}}</h4>
         <input type="text" class="form-control my-2 " v-model="nota.titulo">

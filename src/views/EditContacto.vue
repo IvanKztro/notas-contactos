@@ -1,5 +1,5 @@
 <template>
-    <div class="content-aling-center px-3 container">
+    <div class="container col-lg-6 content-aling-center px-3 container">
         <label for="" class="mt-4">Nombre:</label>
         <input type="text" class="form-control mb-4 " v-model="contacto.name" placeholder="Nombre">
         <label for="">Apellidos:</label>
