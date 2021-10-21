@@ -8,7 +8,9 @@
   <div class="d-flex justify-content-center">
         
         <div class="col-lg-4 login-box">
-            <img src="@/assets/logo.png" class="img-logo" alt="">
+            <div class="d-flex justify-content-center">
+                <img src="@/assets/logo.png" class="img-logo" alt="">
+            </div>
             <form @submit.prevent="login()">
                 <div class="form-group pt-5 mt-4 formLogin">
                     <label>Correo:</label>
@@ -46,8 +48,14 @@ export default {
     methods:{
         ...mapActions(['auth']),
             async login (){
+                const config = {
+                    mode: 'cors',
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                    }
+                }
               try {
-                const response = await axios.post('/login',this.form);
+                const response = await axios.post('/login',config,this.form);
                 if(response.data.ok){
                     //const storage =  await JSON.stringify(response.data)
                     localStorage.setItem('tk',response.data.tk);

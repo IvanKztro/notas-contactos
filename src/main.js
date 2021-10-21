@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import 'bootstrap'
+// import 'bootstrap'
 import '../public/css/style.css'
 import Vuelidate from 'vuelidate'
 Vue.use(BootstrapVue)

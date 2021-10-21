@@ -19,7 +19,7 @@
                 <div class="form-group pt-2  mt-4 formLogin justify-content-center align-items-center px-4 mx-4">
                     <div :class="{'form-group--error': $v.nuevoUser.name.$error}">
                         <input type="text" class=" form-control" @change="setName($event.target.value)"
-                        placeholder="Nombre" v-model.trim="nuevoUser.name"  >
+                        placeholder="Nombre"  v-model.trim="$v.nuevoUser.name.$model"  >
                     </div>
                     <div class="error" v-if="!$v.nuevoUser.name.minLength">Nombre: minimo {{$v.nuevoUser.name.$params.minLength.min}} letras requeridas.</div>
                     <div class="error" v-if="!$v.nuevoUser.name.required">Nombre requerido</div>
@@ -45,6 +45,7 @@
                         placeholder="Email" v-model.trim="nuevoUser.email"   >
                     </div>
                     <div class="error" v-if="!$v.nuevoUser.email.required">Email requerido</div>
+                    <div class="error" v-if="!$v.nuevoUser.email.email">Email No válido</div>
                     
                     <div :class="{'form-group--error': $v.nuevoUser.password.$error}">
                         <input type="password" class=" form-control" @change="setPassword($event.target.value)"
@@ -110,7 +111,7 @@ export default {
                 name:{ required, minLength: minLength(3)},
                 lastName:{required},
                 userName: {required, minLength: minLength(6)},
-                email: {required},
+                email: {required, email},
                 password: {required, minLength: minLength(7)},
                 repeatPassword: { sameAsPassword: sameAs('password')}
         },
@@ -146,11 +147,20 @@ export default {
              this.$v.nuevoUser.password.$touch()
          },
         async registrar(){
+
+        if (this.$v.$invalid) {
+        console.log("errorres");
+        console.log(this.$v);
+        alert("complete el formulario");
+        return;
+        }
+        
             try {
                 const data = await this.axios.post('/newUser', this.nuevoUserENV);
                 this.$router.push("/login");
-                //console.log(data) 
-            } catch (error) {
+                console.log(data) 
+                alert("Datos enviados");
+            } catch (error) {   
                 //console.log( error.response.data.error.keyValue)
                 this.errores= [];
                 this.color = "danger"
